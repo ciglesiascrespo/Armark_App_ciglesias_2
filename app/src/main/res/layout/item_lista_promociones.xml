@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_button_promociones"
+        android:clickable="false"
+        android:visibility="invisible"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=""
+            android:background="@mipmap/ic_detalles"
+            android:textSize="12sp"
+            android:id="@+id/btndetallesPromociones"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=""
+            android:background="@mipmap/ic_almacen"
+            android:textSize="12sp"
+            android:id="@+id/btnalmacenPromociones"/>
+
+    </LinearLayout>
+-->
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview_Promociones"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_cardview_promociones"
+    android:gravity="center_vertical"
+    android:padding="@dimen/padding_carview"
+    card_view:cardCornerRadius="@dimen/cardview_default_radius"
+    card_view:cardElevation="@dimen/cardview_default_elevation"
+    card_view:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_promociones"
+            android:layout_width="65dp"
+            android:layout_height="65dp" />
+
+
+        <View
+            android:id="@+id/viewLinePromocion"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="#000000" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_left_cardview_promociones"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_nombre_promociones"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:hint="@string/descripcion"
+                android:singleLine="true"
+                android:textSize="@dimen/tamaño_letra_20sp" />
+
+            <TextView
+                android:id="@+id/txt_descripcion_promociones"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:hint="@string/descripcion"
+                android:maxLines="4"
+                android:minLines="2"
+                android:textDirection="firstStrong" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txt_descuentoPromociones"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_left_cardview_promociones"
+            android:layout_centerVertical="true"
+            android:layout_weight=".9"
+            android:hint="@string/porcentaje"
+            android:textAlignment="textEnd"
+            android:textSize="@dimen/tamaño_letra_25sp" />
+
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
+

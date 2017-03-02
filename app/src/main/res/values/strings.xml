@@ -1,0 +1,92 @@
+<resources>
+
+    <string name="sub_menu_promociones">Promociones</string>
+    <string name="app_name">ARMARK</string>
+    <string name="hello_world">Clic en cada boton para probar las funciones</string>
+    <string name="button_usuario">Usuario</string>
+    <string name="button_almacenes">Almacenes</string>
+    <string name="button_categorias">Categorias</string>
+    <string name="button_promociones">Promociones</string>
+
+    <string name="facebook_app_id">257103774687256</string>
+
+    <string name="button_login">Cerrar sesion</string>
+
+    <string name="title_activity_login">Login</string>
+    <string name="str_txt_registrarse"><u>Registrar usuario</u></string>
+
+    <!--string traidos del otro programa-->
+
+    <string name="tag_login_correo">Correo</string>
+    <string name="tag_login_contrasena">Contraseña</string>
+
+
+    <!-- Strings relacionados al login -->
+    <string name="prompt_email">Correo</string>
+    <string name="prompt_password">Contraseña (opcional)</string>
+    <string name="text_btn_login">Iniciar sesion</string>
+    <string name="action_sign_in_short">Entrar</string>
+    <string name="error_invalid_email">Este es un correo invalido</string>
+    <string name="error_invalid_password">La contraseña es demasiado corta</string>
+    <string name="error_incorrect_password">La contraseña es incorrecta</string>
+    <string name="error_field_required">Este campo es requerido</string>
+    <string name="permission_rationale">Se necesitan permisos</string>
+    <string name="error_usuario_login">Digite un correo válido</string>
+
+
+    <string name="tag_login_recordar_contrasena">Recordar contraseña</string>
+    <string name="titulo_recordar_contrasena">Olvidaste tu contraseña?</string>
+    <string name="desc_contrasena">Solo necesitamos tu correo electrónico registrado para enviarte las instrucciones de restablecimiento de contraseña.</string>
+    <string name="res_contrasena">Restablecer contraseña</string>
+    <string name="titulo_regresar">Regresar</string>
+    <string name="tag_login_registrarse"><u>Registrarse</u></string>
+    <string name="imv_login_logo">Logo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--string de menu toolbar-->
+    <string name="accion_actualizar">Actualizar</string>
+    <string name="accion_cerrarsesion">Cerrar Sesion</string>
+    <string name="accion_configuracion">Configuración</string>
+
+
+    <!--string de item listas-->
+    <string name="descripcion">Descripcion</string>
+    <string name="detalles">Detalles</string>
+    <string name="promociones">Promociones</string>
+    <string name="categorias">Categorias</string>
+    <string name="almacen">Almacen</string>
+    <string name="porcentaje">100 %</string>
+    <string name="titulo_ir">Ir</string>
+
+
+    <!--string de descuentos-->
+    <string name="valor_antes">Antes: $</string>
+    <string name="valor_ahora">Ahora: $</string>
+    <string name="fecha_inicio">Fecha inicio: </string>
+    <string name="fecha_final">Hasta: </string>
+    <string name="descuento">descuento</string>
+    <string name="referencia">Referencia: </string>
+
+    <!--string de registro de usuarios-->
+    <string name="txtNombres">Nombres</string>
+    <string name="txtApellidos">Apellidos</string>
+    <string name="txtTelefono">Celular</string>
+    <string name="txtEmail">Email</string>
+    <string name="txtPassword">Contraseña</string>
+    <string name="BtnRegistrar">Registrar Usuario</string>
+    <string name="title_activity_ir_almacen">Map</string>
+
+    <string name="error_nombre_registrar">Digite su nombre</string>
+    <string name="error_apellidos_registrar">Digite su(s) Apellido(s)</string>
+    <string name="error_telefono_registrar">Digite su número de celular</string>
+
+
+
+    <!-- String de AR -->
+    <string name="finder_searching">Buscar</string>
+    <string name="recognition_only_tap">Reconocimiento</string>
+    <string name="recognition_only_toast_nothing_found">No se encontraron resultados!</string>
+
+</resources>
