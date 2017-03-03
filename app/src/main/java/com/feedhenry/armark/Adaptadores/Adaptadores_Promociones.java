@@ -137,13 +137,19 @@ public class Adaptadores_Promociones extends RecyclerView.Adapter<Adaptadores_Pr
         @Override
         public void onClick(View v) {
             escuchaPromociones.onClick(this, obtenerIdPromociones(getAdapterPosition()));
-            // preguntamos por la bandera de control , saber si esta mostrando el menu editar y eliminar o no
 
+            // obtenemos el nombre del producto
+            items.moveToPosition(getAdapterPosition());
+            String nombrePromocion = items.getString(ConsultaPromociones.NOMBRE);
+
+
+            // preguntamos por la bandera de control , saber si esta mostrando el menu editar y eliminar o no
             Intent intent = new Intent(itemView.getContext(), Sub_menu_promociones.class);
             //intent.putExtra("identificador", obtenerIdPromociones(getAdapterPosition()));
             intent.putExtra("idpromociones", obtenerIdPromociones(getAdapterPosition()));
             intent.putExtra("varcontrol", "PROMOCIONES");
             intent.putExtra("idalmacen", obtenerIdAlmacen_promocion(getAdapterPosition()));
+            intent.putExtra("nombrepromocion",nombrePromocion);
             contexto.startActivity(intent);
 
 

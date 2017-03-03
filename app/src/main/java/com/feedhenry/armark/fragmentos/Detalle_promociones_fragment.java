@@ -2,12 +2,15 @@ package com.feedhenry.armark.fragmentos;
 
 
 import android.database.Cursor;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.feedhenry.armark.R;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import modelo.Contrato;
 
@@ -93,19 +100,35 @@ public class Detalle_promociones_fragment extends Fragment implements LoaderMana
             else {
               data.moveToNext();
 
-                referencia = data.getString(2);
-                valorAntes = data.getString(5);
-                valorDespues = data.getString(6);
-                descuento = data.getString(7);
-                fechaInicial = data.getString(8);
-                fechaFinal = data.getString(9);
-                imagen = data.getString(10);
+                // formarto para la fecha de promociones
+                SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
+                Date dateFechaInicial,dateFechaFinal;
 
-                txt_valorAntes.setText(valorAntes);
-                txt_valorDespues.setText(valorDespues);
-                txt_fechaInicial.setText(fechaInicial);
+
+                try {
+
+                    dateFechaInicial = dt.parse(data.getString(8));
+                    dateFechaFinal = dt.parse(data.getString(9));
+
+                    referencia = data.getString(2);
+                    valorAntes = data.getString(5);
+                    valorDespues = data.getString(6);
+                    descuento = data.getString(7);
+                    fechaInicial = dt.format(dateFechaInicial);
+                    fechaFinal = dt.format(dateFechaFinal);
+                    imagen = data.getString(10);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
+                txt_valorAntes.setText("$ " + valorAntes);
+                txt_valorAntes.setPaintFlags(txt_valorAntes.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                txt_valorDespues.setText("$ " + valorDespues);
+                txt_fechaInicial.setText(fechaInicial + ", ");
                 txt_fechaFinal.setText(fechaFinal);
-                txt_descuento.setText(descuento);
+                txt_descuento.setText("Aprovecha, " + descuento + "% de descuento");
                 txt_referencia_promo.setText(referencia);
                 if(!imagen.equals(null)){
                     Glide.with(getActivity()).load(imagen).centerCrop().into(img_sub_promocion);

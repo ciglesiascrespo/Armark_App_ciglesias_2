@@ -27,6 +27,11 @@ public class Sub_menu_promociones extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_sub_promociones);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        String nombre = getIntent().getStringExtra("nombrepromocion");
+        getSupportActionBar().setTitle(nombre);
+
+
         // recibimos parametros o identificadores
         varControl = getIntent().getStringExtra("varcontrol");
         idpromociones = getIntent().getStringExtra("idpromociones");

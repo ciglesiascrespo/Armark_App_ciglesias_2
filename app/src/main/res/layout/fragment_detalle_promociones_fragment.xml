@@ -1,146 +1,161 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.feedhenry.armark.fragmentos.Detalle_promociones_fragment"
-    android:orientation="vertical">
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="match_parent">
 
- <ImageView
-     android:layout_width="match_parent"
-     android:layout_height="180dp"
-     android:id="@+id/img_sub_promocion"
-     android:layout_marginTop="15dp"
-     android:layout_marginStart="5dp"
-     android:layout_marginLeft="5dp"
-     android:layout_marginEnd="5dp"
-     android:background="@drawable/img_login"
-     android:layout_marginRight="5dp"
-     android:layout_marginBottom="15dp"/>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_registro_container"
+            android:elevation="2dp"
+            app:cardCornerRadius="10dp">
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_sub_promocion"
+                android:orientation="vertical">
 
-       <TextView
-           android:id="@+id/txt_descuento_promocion"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="@string/descuento"
+                <ImageView
+                    android:id="@+id/img_sub_promocion"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
 
-           android:layout_marginEnd="10dp"
-           android:layout_marginRight="10dp"
-           android:layout_alignParentTop="true"
-           android:layout_alignParentRight="true"
-           android:layout_alignParentEnd="true"
-           android:textSize="30sp"/>
+                    android:background="@drawable/img_login" />
 
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_below="@+id/img_sub_promocion"
-       android:background="#8e9ced"
-       android:layout_margin="5dp"
-       >
+                <TextView
+                    android:id="@+id/txt_descuento_promocion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/descuento"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="@string/valor_antes"
-           android:layout_marginTop="5dp"
-           android:layout_marginLeft="5dp"
-           android:layout_marginStart="5dp"
-           android:id="@+id/textView2" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignTop="@+id/textView2"
-           android:layout_toRightOf="@+id/textView2"
-           android:layout_toEndOf="@+id/textView2"
-           android:layout_marginLeft="5dp"
-           android:layout_marginStart="5dp"
-           android:id="@+id/txt_valor_antes" />
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/fecha_inicio"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/valor_ahora"
-          android:id="@+id/textView3"
-          android:layout_marginTop="5dp"
-          android:layout_centerHorizontal="true"/>
+                    <TextView
+                        android:id="@+id/txt_fecha_inicio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
 
-      <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignTop="@+id/textView3"
-           android:layout_toRightOf="@+id/textView3"
-           android:layout_toEndOf="@+id/textView3"
-           android:layout_marginLeft="5dp"
-           android:layout_marginStart="5dp"
-           android:id="@+id/txt_valor_despues"/>
+                        android:layout_weight="1"
+                        android:text="@string/valor_fecha_inicio"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="@string/fecha_inicio"
-           android:layout_marginTop="20dp"
-           android:id="@+id/textView4"
-           android:layout_below="@+id/textView2"
-           android:layout_alignLeft="@+id/textView2"
-           android:layout_alignStart="@+id/textView2" />
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignTop="@+id/textView4"
-           android:layout_toRightOf="@+id/textView4"
-           android:layout_toEndOf="@+id/textView4"
-           android:layout_marginLeft="5dp"
-           android:layout_marginStart="5dp"
-           android:id="@+id/txt_fecha_inicio" />
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="@string/fecha_final"
-           android:id="@+id/textView5"
-           android:layout_below="@id/txt_fecha_inicio"
-           android:layout_alignLeft="@+id/textView4"
-           android:layout_alignStart="@+id/textView4"
-           android:layout_marginTop="10dp"/>
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".6"
+                        android:text="@string/fecha_final"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignTop="@+id/textView5"
-           android:layout_toRightOf="@+id/textView5"
-           android:layout_toEndOf="@+id/textView5"
-           android:layout_marginLeft="5dp"
-           android:layout_marginStart="5dp"
-           android:id="@+id/txt_fecha_final"/>
+                    <TextView
+                        android:id="@+id/txt_fecha_final"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/valor_fecha_fin"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="@string/referencia"
-           android:id="@+id/textView6"
-           android:layout_below="@+id/txt_fecha_final"
-           android:layout_toLeftOf="@+id/textView3"
-           android:layout_toStartOf="@+id/textView3"
-           android:layout_marginTop="10dp"
-           android:layout_marginBottom="5dp"/>
+                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/txt_referencia_promocion"
-           android:layout_alignTop="@+id/textView6"
-           android:layout_toEndOf="@+id/textView6"
-           android:layout_toRightOf="@+id/textView6"
-           android:layout_marginLeft="5dp"
-           android:layout_marginStart="5dp"/>
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/valor_antes" />
 
-   </RelativeLayout>
+                    <TextView
+                        android:id="@+id/txt_valor_antes"
+                        android:layout_width="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:text="@string/str_valor_antes"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_coma" />
+
+                    <TextView
+                        android:id="@+id/txt_valor_despues"
+                        android:layout_width="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:text="@string/str_valor_antes"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        />
+
+                </LinearLayout>
 
 
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/referencia" />
 
-</LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_referencia_promocion"
+                    android:layout_width="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/textView6"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/textView6"
+                    android:layout_toRightOf="@+id/textView6" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </android.support.v4.widget.NestedScrollView>
+
 

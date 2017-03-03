@@ -62,11 +62,16 @@
 
 
     <!--string de descuentos-->
-    <string name="valor_antes">Antes: $</string>
+    <string name="valor_antes">Por solo: </string>
     <string name="valor_ahora">Ahora: $</string>
-    <string name="fecha_inicio">Fecha inicio: </string>
-    <string name="fecha_final">Hasta: </string>
-    <string name="descuento">descuento</string>
+    <string name="str_valor_antes"><u>450000</u></string>
+    <string name="str_valor_despues">350000</string>
+    <string name="str_coma">,</string>
+    <string name="fecha_inicio">Solo desde: </string>
+    <string name="valor_fecha_inicio">2017-03-02</string>
+    <string name="valor_fecha_fin">2017-03-09</string>
+    <string name="fecha_final">hasta: </string>
+    <string name="descuento">Aprovecha, 100% de  descuento</string>
     <string name="referencia">Referencia: </string>
 
     <!--string de registro de usuarios-->
