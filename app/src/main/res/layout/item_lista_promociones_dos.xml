@@ -47,67 +47,67 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/img_promociones"
-            android:layout_width="65dp"
-            android:src="@drawable/imgpromo"
-            android:layout_height="105dp" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:scaleType="centerInside"
+            android:src="@drawable/imgpromo" />
 
-
-        <View
-            android:id="@+id/viewLinePromocion"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:background="#000000" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_marginLeft="@dimen/margin_left_cardview_promociones"
-            android:layout_weight="3"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_nombre_promociones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:hint="@string/descripcion"
+                    android:singleLine="true"
+                    android:textSize="@dimen/tamaño_letra_nombre_promocion"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_descripcion_promociones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:hint="@string/descripcion"
+                    android:maxLines="4"
+                    android:minLines="2"
+                    android:textDirection="firstStrong"
+                    android:visibility="gone" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/txt_nombre_promociones"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:textStyle="bold"
+                android:id="@+id/txt_descuentoPromociones"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:hint="@string/descripcion"
-                android:singleLine="true"
-                android:textSize="@dimen/tamaño_letra_20sp" />
+                android:layout_marginRight="@dimen/margin_left_cardview_promociones"
+                android:layout_weight=".9"
+                android:hint="@string/porcentaje"
+                android:textSize="@dimen/tamaño_letra_nombre_promocion" />
 
-            <TextView
-                android:id="@+id/txt_descripcion_promociones"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:gravity="center_vertical"
-                android:hint="@string/descripcion"
-                android:maxLines="4"
-                android:minLines="2"
-                android:textDirection="firstStrong" />
 
         </LinearLayout>
-
-
-        <TextView
-            android:id="@+id/txt_descuentoPromociones"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/margin_left_cardview_promociones"
-            android:layout_centerVertical="true"
-            android:layout_weight=".9"
-            android:hint="@string/porcentaje"
-            android:textAlignment="textEnd"
-            android:textSize="@dimen/tamaño_letra_25sp" />
 
 
     </LinearLayout>

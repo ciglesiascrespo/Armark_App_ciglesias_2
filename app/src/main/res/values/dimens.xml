@@ -9,6 +9,7 @@
     <dimen name="elevation_appbar">4dp</dimen>
     <dimen name="tamaño_letra_20sp">20sp</dimen>
     <dimen name="tamaño_letra_25sp">25sp</dimen>
-    <dimen name="height_cardview_promociones">150dp</dimen>
+    <dimen name="tamaño_letra_nombre_promocion">15sp</dimen>
+    <dimen name="height_cardview_promociones">120dp</dimen>
     <dimen name="margin_left_cardview_promociones">10dp</dimen>
 </resources>

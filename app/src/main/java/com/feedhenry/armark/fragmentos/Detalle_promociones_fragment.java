@@ -11,6 +11,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.feedhenry.armark.R;
+import com.feedhenry.armark.Util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,27 +31,28 @@ import modelo.Contrato;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Detalle_promociones_fragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
+public class Detalle_promociones_fragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     public static final String DETALLE_PROMOCIONES = "ARG_PAGE";
     public static final String IDPROMOCION = "ARG_IDPROMOCION";
     private int mPage;
     private ImageView img_sub_promocion;
-    private TextView txt_referencia_promo,txt_descuento,txt_valorAntes,txt_valorDespues,txt_fechaInicial,txt_fechaFinal;
-    private String imagen,referencia,valorAntes,valorDespues,descuento,fechaInicial,fechaFinal;
+    private TextView txt_referencia_promo, txt_descuento, txt_valorAntes, txt_valorDespues, txt_fechaInicial, txt_fechaFinal;
+    private String imagen, referencia, valorAntes, valorDespues, descuento, fechaInicial, fechaFinal;
     private String idpromocion;
 
 
-    private static final int LOADER_SUB_PROMOCIONES =4 ;
+    private static final int LOADER_SUB_PROMOCIONES = 4;
 
-    public static Detalle_promociones_fragment newInstance(int page,String idpromocion) {
+    public static Detalle_promociones_fragment newInstance(int page, String idpromocion) {
         Detalle_promociones_fragment detalle_promociones_fragment = new Detalle_promociones_fragment();
         Bundle args = new Bundle();
-        args.putInt(DETALLE_PROMOCIONES,page);
-        args.putString(IDPROMOCION,idpromocion);
+        args.putInt(DETALLE_PROMOCIONES, page);
+        args.putString(IDPROMOCION, idpromocion);
         detalle_promociones_fragment.setArguments(args);
 
         return detalle_promociones_fragment;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,72 +73,73 @@ public class Detalle_promociones_fragment extends Fragment implements LoaderMana
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        img_sub_promocion = (ImageView)getActivity().findViewById(R.id.img_sub_promocion);
-        txt_referencia_promo = (TextView)getActivity().findViewById(R.id.txt_referencia_promocion);
-        txt_valorAntes = (TextView)getActivity().findViewById(R.id.txt_valor_antes);
-        txt_valorDespues = (TextView)getActivity().findViewById(R.id.txt_valor_despues);
-        txt_fechaInicial = (TextView)getActivity().findViewById(R.id.txt_fecha_inicio);
-        txt_fechaFinal = (TextView)getActivity().findViewById(R.id.txt_fecha_final);
-        txt_descuento = (TextView)getActivity().findViewById(R.id.txt_descuento_promocion);
+        img_sub_promocion = (ImageView) getActivity().findViewById(R.id.img_sub_promocion);
+        txt_referencia_promo = (TextView) getActivity().findViewById(R.id.txt_referencia_promocion);
+        txt_valorAntes = (TextView) getActivity().findViewById(R.id.txt_valor_antes);
+        txt_valorDespues = (TextView) getActivity().findViewById(R.id.txt_valor_despues);
+        txt_fechaInicial = (TextView) getActivity().findViewById(R.id.txt_fecha_inicio);
+        txt_fechaFinal = (TextView) getActivity().findViewById(R.id.txt_fecha_final);
+        txt_descuento = (TextView) getActivity().findViewById(R.id.txt_descuento_promocion);
         // Iniciar loader
 
-        getActivity().getSupportLoaderManager().restartLoader(LOADER_SUB_PROMOCIONES,null,this);
+        getActivity().getSupportLoaderManager().restartLoader(LOADER_SUB_PROMOCIONES, null, this);
 
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        String SelPromocion = "_ID"+"=?";
+        String SelPromocion = "_ID" + "=?";
         String[] arg = new String[]{idpromocion};
-        return new CursorLoader(getContext(), Contrato.Armark_promociones.URI_CONTENIDO,null,SelPromocion,arg,null);
+        return new CursorLoader(getContext(), Contrato.Armark_promociones.URI_CONTENIDO, null, SelPromocion, arg, null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            if(data==null){
-                // error  dato nulo
-            }else if(data.getCount()<=0){
-                // no hay registro
+        if (data == null) {
+            // error  dato nulo
+        } else if (data.getCount() <= 0) {
+            // no hay registro
+        } else {
+            data.moveToNext();
+
+            // formarto para la fecha de promociones
+            SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
+            Date dateFechaInicial, dateFechaFinal;
+
+
+            try {
+
+                dateFechaInicial = dt.parse(data.getString(8));
+                dateFechaFinal = dt.parse(data.getString(9));
+
+                referencia = data.getString(2);
+                valorAntes = data.getString(5);
+                valorDespues = data.getString(6);
+                descuento = data.getString(7);
+                fechaInicial = dt.format(dateFechaInicial);
+                fechaFinal = dt.format(dateFechaFinal);
+                imagen = data.getString(10);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-            else {
-              data.moveToNext();
-
-                // formarto para la fecha de promociones
-                SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
-                Date dateFechaInicial,dateFechaFinal;
 
 
-                try {
-
-                    dateFechaInicial = dt.parse(data.getString(8));
-                    dateFechaFinal = dt.parse(data.getString(9));
-
-                    referencia = data.getString(2);
-                    valorAntes = data.getString(5);
-                    valorDespues = data.getString(6);
-                    descuento = data.getString(7);
-                    fechaInicial = dt.format(dateFechaInicial);
-                    fechaFinal = dt.format(dateFechaFinal);
-                    imagen = data.getString(10);
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-
-                txt_valorAntes.setText("$ " + valorAntes);
-                txt_valorAntes.setPaintFlags(txt_valorAntes.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                txt_valorDespues.setText("$ " + valorDespues);
-                txt_fechaInicial.setText(fechaInicial + ", ");
-                txt_fechaFinal.setText(fechaFinal);
-                txt_descuento.setText("Aprovecha, " + descuento + "% de descuento");
-                txt_referencia_promo.setText(referencia);
-                if(!imagen.equals(null)){
-                    Glide.with(getActivity()).load(imagen).centerCrop().into(img_sub_promocion);
-                }
-
-
+            txt_valorAntes.setText("$ " + valorAntes);
+            txt_valorAntes.setPaintFlags(txt_valorAntes.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            txt_valorDespues.setText("$ " + valorDespues);
+            txt_fechaInicial.setText(fechaInicial + ", ");
+            txt_fechaFinal.setText(fechaFinal);
+            txt_descuento.setText("Aprovecha, " + descuento + "% de descuento");
+            txt_referencia_promo.setText(referencia);
+            if (!imagen.equals("null")) {
+                Glide.with(getActivity()).load(Util.URL + imagen).centerCrop().into(img_sub_promocion);
+            }else{
+                Glide.with(getActivity()).load(Util.URL + Util.IMAGE_DEFAULT).centerCrop().into(img_sub_promocion);
             }
+
+
+        }
     }
 
     @Override

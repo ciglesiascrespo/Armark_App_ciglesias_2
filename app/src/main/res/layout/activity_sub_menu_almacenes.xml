@@ -4,25 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:fitsSystemWindows="true"
     tools:context="com.feedhenry.armark.Sub_menus.Sub_menu_almacenes">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar_sub_almacen"
+        android:id="@+id/appbar_sub_promociones"
         android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:paddingTop="@dimen/appbar_padding_top"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_sub_almacen"
+            android:id="@+id/toolbar_sub_promociones"
             android:layout_width="match_parent"
+            android:elevation="@dimen/elevation_appbar"
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
         </android.support.v7.widget.Toolbar>
 

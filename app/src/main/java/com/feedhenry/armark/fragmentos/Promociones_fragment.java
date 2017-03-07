@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,7 +26,7 @@ import modelo.Contrato;
  * A simple {@link Fragment} subclass.
  */
 public class Promociones_fragment extends Fragment implements Adaptadores_Promociones.OnItemClickListener,
-        LoaderManager.LoaderCallbacks<Cursor>{
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String PROMOCIONES = "ARG_PAGE";
     public static final String VARCONTROL = "ARG_VARCONTROL";
@@ -35,18 +36,18 @@ public class Promociones_fragment extends Fragment implements Adaptadores_Promoc
     private RecyclerView listaUI;
     private LinearLayoutManager linearLayoutManager;
     private Adaptadores_Promociones adaptadorPromociones;
-    private String idwebalmacenes,varcontrol; //
+    private String idwebalmacenes, varcontrol; //
 
     private static final int LOADER_PROMOCIONES = 1;
 
-    public static Promociones_fragment newInstance(int page,String varcontrol2,String idwebalmacenes) {
+    public static Promociones_fragment newInstance(int page, String varcontrol2, String idwebalmacenes) {
         // Required empty public constructor
         Promociones_fragment promociones_fragment = new Promociones_fragment();
         Bundle args = new Bundle();
-        args.putInt(PROMOCIONES,page);
-        args.putString(VARCONTROL,varcontrol2);
+        args.putInt(PROMOCIONES, page);
+        args.putString(VARCONTROL, varcontrol2);
 
-        args.putString(IDWEBALMACENES,idwebalmacenes);
+        args.putString(IDWEBALMACENES, idwebalmacenes);
         promociones_fragment.setArguments(args);
         return promociones_fragment;
     }
@@ -76,18 +77,19 @@ public class Promociones_fragment extends Fragment implements Adaptadores_Promoc
         super.onActivityCreated(savedInstanceState);
 
 
-        listaUI = (RecyclerView)getActivity().findViewById(R.id.my_Recycler_View_Promociones);
+        listaUI = (RecyclerView) getActivity().findViewById(R.id.my_Recycler_View_Promociones);
         listaUI.setHasFixedSize(true);
 
         linearLayoutManager = new LinearLayoutManager(getContext());
-        listaUI.setLayoutManager(linearLayoutManager);
-
-        adaptadorPromociones = new Adaptadores_Promociones(getContext(),this);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+//        listaUI.setLayoutManager(linearLayoutManager);
+        listaUI.setLayoutManager(gridLayoutManager);
+        adaptadorPromociones = new Adaptadores_Promociones(getContext(), this);
         adaptadorPromociones.notifyDataSetChanged();
         listaUI.setAdapter(adaptadorPromociones);
-        Log.e("error","promociones");
+        Log.e("error", "promociones");
 
-        getActivity().getSupportLoaderManager().initLoader(LOADER_PROMOCIONES,null,this);
+        getActivity().getSupportLoaderManager().initLoader(LOADER_PROMOCIONES, null, this);
 
 
     }
@@ -101,12 +103,12 @@ public class Promociones_fragment extends Fragment implements Adaptadores_Promoc
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
-        if(varcontrol!=null && varcontrol.equals("ALMACEN")){
-            String SelPromocion = Contrato.Armark_promociones.IDALMACEN+"=?";
+        if (varcontrol != null && varcontrol.equals("ALMACEN")) {
+            String SelPromocion = Contrato.Armark_promociones.IDALMACEN + "=?";
             String[] arg = new String[]{idwebalmacenes};
-            return new CursorLoader(getContext(), Contrato.Armark_promociones.URI_CONTENIDO,null,SelPromocion,arg,null);
+            return new CursorLoader(getContext(), Contrato.Armark_promociones.URI_CONTENIDO, null, SelPromocion, arg, null);
         }
-        return new CursorLoader(getContext(), Contrato.Armark_promociones.URI_CONTENIDO,null,null,null,null);
+        return new CursorLoader(getContext(), Contrato.Armark_promociones.URI_CONTENIDO, null, null, null, null);
     }
 
     @Override

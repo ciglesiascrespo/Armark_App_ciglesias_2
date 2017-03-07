@@ -10,6 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import com.feedhenry.armark.R;
 import com.feedhenry.armark.fragmentos.Detalles_almacenes_fragment;
@@ -24,8 +26,13 @@ public class Sub_menu_almacenes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_menu_almacenes);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_sub_almacen);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_sub_promociones);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        String nombre = getIntent().getStringExtra("nombrealmacen");
+        getSupportActionBar().setTitle(nombre);
+
 
         // recibimos parametros o identificadores
         varControl = getIntent().getStringExtra("varcontrol");
@@ -49,6 +56,14 @@ public class Sub_menu_almacenes extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
 
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_almacenes, menu);
+        return super.onCreateOptionsMenu(menu);
 
     }
 

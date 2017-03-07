@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.feedhenry.armark.R;
 import com.feedhenry.armark.Sub_menus.Sub_menu_promociones;
+import com.feedhenry.armark.Util;
 
 /**
  * Created by ASUS on 24/10/2016.
@@ -27,6 +29,7 @@ public class Adaptadores_Promociones extends RecyclerView.Adapter<Adaptadores_Pr
     private final Context contexto;
     private Cursor items;
     public OnItemClickListener escuchaPromociones;
+
 
     public Adaptadores_Promociones(Context contexto, OnItemClickListener escuchaPromociones) {
         this.contexto = contexto;
@@ -39,7 +42,7 @@ public class Adaptadores_Promociones extends RecyclerView.Adapter<Adaptadores_Pr
 
     @Override
     public Adaptadores_Promociones.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_promociones, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_promociones_dos, parent, false);
         return new ViewHolder(view);
     }
 
@@ -58,10 +61,10 @@ public class Adaptadores_Promociones extends RecyclerView.Adapter<Adaptadores_Pr
 
         s = items.getString(ConsultaPromociones.DESCUENTO);
         holder.txt_descuentoPromo.setText(s + " %");
-
         s = items.getString(ConsultaPromociones.IMAGEN);
-        Glide.with(contexto).load(s).centerCrop().into(holder.img_promociones);
-
+        String urlImage = Util.URL + (s.equals("null") ? Util.IMAGE_DEFAULT : s);
+        Glide.with(contexto).load(urlImage).centerCrop().into(holder.img_promociones);
+//
     }
 
     @Override
@@ -149,7 +152,7 @@ public class Adaptadores_Promociones extends RecyclerView.Adapter<Adaptadores_Pr
             intent.putExtra("idpromociones", obtenerIdPromociones(getAdapterPosition()));
             intent.putExtra("varcontrol", "PROMOCIONES");
             intent.putExtra("idalmacen", obtenerIdAlmacen_promocion(getAdapterPosition()));
-            intent.putExtra("nombrepromocion",nombrePromocion);
+            intent.putExtra("nombrepromocion", nombrePromocion);
             contexto.startActivity(intent);
 
 

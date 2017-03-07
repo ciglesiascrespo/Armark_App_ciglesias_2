@@ -1,12 +1,16 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="5dp"
     tools:context="com.feedhenry.armark.fragmentos.Detalles_almacenes_fragment">
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -50,4 +54,14 @@
         android:layout_alignLeft="@id/txt_direccion_almacen"
         android:layout_marginBottom="10dp" />
 
-</RelativeLayout>
+</LinearLayout>
+<!--
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/id_fab"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:backgroundTint="@color/colorAccent"
+        android:src="@drawable/img_ar" />-->
+</android.support.design.widget.CoordinatorLayout>

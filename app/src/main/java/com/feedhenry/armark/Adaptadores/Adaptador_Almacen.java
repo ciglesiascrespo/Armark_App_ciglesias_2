@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.feedhenry.armark.ArAlmacenActivity;
 import com.feedhenry.armark.IrAlmacenActivity;
 import com.feedhenry.armark.R;
 import com.feedhenry.armark.Sub_menus.Sub_menu_almacenes;
+import com.feedhenry.armark.Util;
 
 /**
  * Created by ASUS on 20/10/2016.
@@ -34,7 +36,7 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
         public void onClick(ViewHolder holder, String idAlmacen);
     }
 
-    public Adaptador_Almacen(Context contexto,OnItemClickListener escuchaAlmacen) {
+    public Adaptador_Almacen(Context contexto, OnItemClickListener escuchaAlmacen) {
         this.contexto = contexto;
         this.escuchaAlmacen = escuchaAlmacen;
     }
@@ -43,7 +45,7 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
     @Override
     public Adaptador_Almacen.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_almacen,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_almacen, parent, false);
         return new ViewHolder(view);
 
     }
@@ -54,14 +56,15 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
         String s;
 
         // asignacion de ui
-        s= items.getString(ConsultaAlmacen.RAZONSOCIAL);
+        s = items.getString(ConsultaAlmacen.RAZONSOCIAL);
         holder.viewRazonSocial.setText(s);
 
-        s= items.getString(ConsultaAlmacen.DESCRIPCION);
+        s = items.getString(ConsultaAlmacen.DESCRIPCION);
         holder.viewDescripcion.setText(s);
 
-        s= items.getString(ConsultaAlmacen.LOGO);
-        Glide.with(contexto).load(s).centerCrop().into(holder.viewLogo);
+        s = items.getString(ConsultaAlmacen.LOGO);
+        Log.e("Almacenes", "Imagen: " + s);
+        Glide.with(contexto).load(Util.URL + (s.equals("null") ? Util.IMAGE_DEFAULT : s)).centerCrop().into(holder.viewLogo);
     }
 
     @Override
@@ -78,33 +81,34 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
             notifyDataSetChanged();
         }
     }
+
     public Cursor getCursor() {
         return items;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // Tomamos las referencias ui
-        private TextView viewRazonSocial,viewDescripcion;
+        private TextView viewRazonSocial, viewDescripcion;
         private ImageView viewLogo;
         public LinearLayout linearLayout_button_almacen;
         public Boolean flag_control = false;
-        public Button btnDetalles,btnPromociones,btnCategorias, btnIrAlmacen, BtnAR;
+        public Button btnDetalles, btnPromociones, btnCategorias, btnIrAlmacen, BtnAR;
         public CardView cardView_almacenes;
 
         public ViewHolder(final View itemView) {
             super(itemView);
 
             viewRazonSocial = (TextView) itemView.findViewById(R.id.txt_razonSocial);
-            viewDescripcion = (TextView)itemView.findViewById(R.id.txt_descripcion_almacen);
-            viewLogo = (ImageView)itemView.findViewById(R.id.img_almcen);
-            btnDetalles = (Button)itemView.findViewById(R.id.btndetalles);
-            btnPromociones = (Button)itemView.findViewById(R.id.btnpromociones);
-            btnCategorias = (Button)itemView.findViewById(R.id.btncategorias);
-            btnIrAlmacen = (Button)itemView.findViewById(R.id.btnIrAlmacen);
-            BtnAR = (Button)itemView.findViewById(R.id.BtnAR);
-            cardView_almacenes = (CardView)itemView.findViewById(R.id.cardview_Almacenes);
-            linearLayout_button_almacen = (LinearLayout)itemView.findViewById(R.id.layout_button_almacenes);
+            viewDescripcion = (TextView) itemView.findViewById(R.id.txt_descripcion_almacen);
+            viewLogo = (ImageView) itemView.findViewById(R.id.img_almcen);
+            btnDetalles = (Button) itemView.findViewById(R.id.btndetalles);
+            btnPromociones = (Button) itemView.findViewById(R.id.btnpromociones);
+            btnCategorias = (Button) itemView.findViewById(R.id.btncategorias);
+            btnIrAlmacen = (Button) itemView.findViewById(R.id.btnIrAlmacen);
+            BtnAR = (Button) itemView.findViewById(R.id.BtnAR);
+            cardView_almacenes = (CardView) itemView.findViewById(R.id.cardview_Almacenes);
+            linearLayout_button_almacen = (LinearLayout) itemView.findViewById(R.id.layout_button_almacenes);
             itemView.setOnClickListener(this);
 
 
@@ -112,9 +116,9 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), Sub_menu_almacenes.class);
-                    intent.putExtra("idalmacen",obtenerIdAlmacen(getAdapterPosition()));
-                    intent.putExtra("varcontrol","ALMACEN");
-                    intent.putExtra("idwebalmacenes",obtenerIdWebAlmacenes(getAdapterPosition()));
+                    intent.putExtra("idalmacen", obtenerIdAlmacen(getAdapterPosition()));
+                    intent.putExtra("varcontrol", "ALMACEN");
+                    intent.putExtra("idwebalmacenes", obtenerIdWebAlmacenes(getAdapterPosition()));
                     contexto.startActivity(intent);
 
                 }
@@ -123,9 +127,9 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), Sub_menu_almacenes.class);
-                    intent.putExtra("idalmacen",obtenerIdAlmacen(getAdapterPosition()));
-                    intent.putExtra("varcontrol","PROMOCIONES");
-                    intent.putExtra("idwebalmacenes",obtenerIdWebAlmacenes(getAdapterPosition()));
+                    intent.putExtra("idalmacen", obtenerIdAlmacen(getAdapterPosition()));
+                    intent.putExtra("varcontrol", "PROMOCIONES");
+                    intent.putExtra("idwebalmacenes", obtenerIdWebAlmacenes(getAdapterPosition()));
                     contexto.startActivity(intent);
                 }
             });
@@ -133,9 +137,9 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), Sub_menu_almacenes.class);
-                    intent.putExtra("idalmacen",obtenerIdAlmacen(getAdapterPosition()));
-                    intent.putExtra("varcontrol","CATEGORIAS");
-                    intent.putExtra("idwebalmacenes",obtenerIdWebAlmacenes(getAdapterPosition()));
+                    intent.putExtra("idalmacen", obtenerIdAlmacen(getAdapterPosition()));
+                    intent.putExtra("varcontrol", "CATEGORIAS");
+                    intent.putExtra("idwebalmacenes", obtenerIdWebAlmacenes(getAdapterPosition()));
                     contexto.startActivity(intent);
                 }
             });
@@ -160,29 +164,34 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
 
         @Override
         public void onClick(View v) {
-            escuchaAlmacen.onClick(this,obtenerIdAlmacen(getAdapterPosition()));
+            escuchaAlmacen.onClick(this, obtenerIdAlmacen(getAdapterPosition()));
+            Intent intent = new Intent(itemView.getContext(), Sub_menu_almacenes.class);
+            intent.putExtra("idalmacen", obtenerIdAlmacen(getAdapterPosition()));
+            intent.putExtra("varcontrol", "ALMACEN");
+            intent.putExtra("idwebalmacenes", obtenerIdWebAlmacenes(getAdapterPosition()));
+            intent.putExtra("nombrealmacen",items.getString(ConsultaAlmacen.RAZONSOCIAL));
+            contexto.startActivity(intent);
 
-            // preguntamos por la bandera de control , saber si esta mostrando el menu editar y eliminar o no
-            if (!flag_control){                                                       // si la bandera es false  ( NO se ha presionado boton)
-                Animation desplaza = AnimationUtils.loadAnimation(itemView.getContext(),R.anim.deslizar); // identificamos la animacion desplzar a la  derecha
-                flag_control = true;                                                // invertimos bandera, se presiono
-                viewRazonSocial.setText(items.getString(ConsultaAlmacen.RAZONSOCIAL));  // no se por que tengo que hacer esto para que funcione la animacion. jajajajaja  luego averiguo //// TODO: 28/10/2016
-                desplaza.setFillAfter(true);                                       //accion para que la animacion no se restablezca
-                cardView_almacenes.setAnimation(desplaza);                            //iniciamos animacion  ir a la derecha cardview
-                linearLayout_button_almacen.setVisibility(View.VISIBLE);     // colocamo visibles los botones editar y eliminar
-                linearLayout_button_almacen.setClickable(true);            //  activamos que puedas darle click
-
-
-            }
-            else {                                                          //  si la bandera esta true,  boton esta presionado
-                Animation desplaza_back = AnimationUtils.loadAnimation(itemView.getContext(),R.anim.deslizar_back);  // identificamos animacion ir a la izquierda
-                Animation alpha_back = AnimationUtils.loadAnimation(itemView.getContext(),R.anim.alpha_back);  // identificamos animacion desaparcer
-                linearLayout_button_almacen.setClickable(false);                           //  desabilitamos que se pueda dar click
-                linearLayout_button_almacen.setAnimation(alpha_back);                      // iniciamos animacion desaparecer de botones editar y eliminar
-                flag_control= false;                                                    //  colcoamos control en false ,
-                cardView_almacenes.setAnimation(desplaza_back);                                   //iniciamos animacion para ir atras del cardview
-                linearLayout_button_almacen.setVisibility(View.INVISIBLE);                 // colocamos invisible  los botones editar y eliminar
-            }
+//            // preguntamos por la bandera de control , saber si esta mostrando el menu editar y eliminar o no
+//            if (!flag_control) {                                                       // si la bandera es false  ( NO se ha presionado boton)
+//                Animation desplaza = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.deslizar); // identificamos la animacion desplzar a la  derecha
+//                flag_control = true;                                                // invertimos bandera, se presiono
+//                viewRazonSocial.setText(items.getString(ConsultaAlmacen.RAZONSOCIAL));  // no se por que tengo que hacer esto para que funcione la animacion. jajajajaja  luego averiguo //// TODO: 28/10/2016
+//                desplaza.setFillAfter(true);                                       //accion para que la animacion no se restablezca
+//                cardView_almacenes.setAnimation(desplaza);                            //iniciamos animacion  ir a la derecha cardview
+//                linearLayout_button_almacen.setVisibility(View.VISIBLE);     // colocamo visibles los botones editar y eliminar
+//                linearLayout_button_almacen.setClickable(true);            //  activamos que puedas darle click
+//
+//
+//            } else {                                                          //  si la bandera esta true,  boton esta presionado
+//                Animation desplaza_back = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.deslizar_back);  // identificamos animacion ir a la izquierda
+//                Animation alpha_back = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.alpha_back);  // identificamos animacion desaparcer
+//                linearLayout_button_almacen.setClickable(false);                           //  desabilitamos que se pueda dar click
+//                linearLayout_button_almacen.setAnimation(alpha_back);                      // iniciamos animacion desaparecer de botones editar y eliminar
+//                flag_control = false;                                                    //  colcoamos control en false ,
+//                cardView_almacenes.setAnimation(desplaza_back);                                   //iniciamos animacion para ir atras del cardview
+//                linearLayout_button_almacen.setVisibility(View.INVISIBLE);                 // colocamos invisible  los botones editar y eliminar
+//            }
         }
     }
 
@@ -193,7 +202,7 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
         holder.linearLayout_button_almacen.setVisibility(View.INVISIBLE);
         holder.linearLayout_button_almacen.setClickable(false);
         holder.cardView_almacenes.clearAnimation();
-        holder.flag_control= false;
+        holder.flag_control = false;
     }
 
     private String obtenerIdAlmacen(int adapterPosition) {
@@ -205,6 +214,7 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
 
         return null;
     }
+
     private String obtenerIdWebAlmacenes(int adapterPosition) {
         if (items != null) {
             if (items.moveToPosition(adapterPosition)) {
@@ -223,7 +233,7 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
         int DESCRIPCION = 4;
         int DIRECCION = 5;
         int TELEFONO = 6;
-        int CORREO= 7;
+        int CORREO = 7;
         int POSICIONGPS = 8;
         int LOGO = 9;
         int MARCADOR = 10;
