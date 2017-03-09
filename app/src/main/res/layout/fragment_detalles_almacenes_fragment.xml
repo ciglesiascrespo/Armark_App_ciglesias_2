@@ -1,61 +1,150 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="5dp"
     tools:context="com.feedhenry.armark.fragmentos.Detalles_almacenes_fragment">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:gravity="center_horizontal"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/img_sub_almacen"/>
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textAllCaps="true"
-        android:layout_centerHorizontal="true"
-        android:hint="razon social"
-        android:id="@+id/txt_razonsocial_almacen" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="direccion"
-        android:layout_alignBottom="@+id/img_sub_almacen"
-        android:layout_toRightOf="@+id/img_sub_almacen"
-        android:layout_toEndOf="@+id/img_sub_almacen"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:id="@+id/txt_direccion_almacen" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="telefono"
-        android:layout_alignTop="@+id/txt_direccion_almacen"
-        android:layout_toRightOf="@+id/txt_direccion_almacen"
-        android:layout_toEndOf="@+id/txt_direccion_almacen"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:id="@+id/txt_telefono_almacen"/>
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_registro_container"
+        android:elevation="2dp"
+        app:cardCornerRadius="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="correo electronico"
-        android:id="@+id/txt_correo_almacen"
-        android:layout_above="@+id/txt_direccion_almacen"
-        android:layout_alignStart="@id/txt_direccion_almacen"
-        android:layout_alignLeft="@id/txt_direccion_almacen"
-        android:layout_marginBottom="10dp" />
 
-</LinearLayout>
-<!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_sub_promocion"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_sub_almacen"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/img_login" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="razon social"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txt_razonsocial_almacen"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:hint="razon social"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="direccion"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/txt_direccion_almacen"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="direccion"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="correo electronico"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/txt_correo_almacen"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="correo electronico"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="telefono"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/txt_telefono_almacen"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="telefono"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <!--
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/id_fab"
         android:layout_width="50dp"
