@@ -75,13 +75,18 @@ public class Sub_menu_almacenes extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.id_menu_ar:
-                Intent intentAr = new Intent(getApplicationContext(), ArAlmacenActivity.class);
-                getApplicationContext().startActivity(intentAr);
+                Intent intentAr = new Intent(this, ArAlmacenActivity.class);
+                startActivity(intentAr);
+                /* Intent intentAr = new Intent(getApplicationContext(), ArAlmacenActivity.class);
+                getApplicationContext().startActivity(intentAr);*/
 
                 break;
             case R.id.id_menu_mapa:
-                Intent intentMap = new Intent(getApplicationContext(), IrAlmacenActivity.class);
-                getApplicationContext().startActivity(intentMap);
+                Intent intentMap = new Intent(this, IrAlmacenActivity.class);
+                startActivity(intentMap);
+
+                /*Intent intentMap = new Intent(getApplicationContext(), IrAlmacenActivity.class);
+                getApplicationContext().startActivity(intentMap);*/
                 break;
         }
 
