@@ -24,7 +24,7 @@ public class Sub_menu_promociones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_menu_promociones);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_sub_promociones);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_sub_almaneces);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

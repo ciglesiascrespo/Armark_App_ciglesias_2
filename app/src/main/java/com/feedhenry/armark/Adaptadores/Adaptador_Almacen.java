@@ -9,8 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -64,7 +62,7 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
 
         s = items.getString(ConsultaAlmacen.LOGO);
         Log.e("Almacenes", "Imagen: " + s);
-        Glide.with(contexto).load(Util.URL + (s.equals("null") ? Util.IMAGE_DEFAULT : s)).centerCrop().into(holder.viewLogo);
+        Glide.with(contexto).load(Util.URL + (s.equals("null") ? Util.IMAGE_DEFAULT_ALMACEN : s)).centerCrop().into(holder.viewLogo);
     }
 
     @Override

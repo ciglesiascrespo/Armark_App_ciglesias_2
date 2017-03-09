@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.feedhenry.armark.R;
+import com.feedhenry.armark.Util;
 
 /**
  * Created by ASUS on 24/10/2016.
@@ -52,7 +54,9 @@ public class Adaptador_Categorias extends RecyclerView.Adapter<Adaptador_Categor
         holder.txt_nombreCategoria.setText(s);
 
         s= items.getString(ConsultaCategorias.IMAGEN);
-        Glide.with(contexto).load(s).centerCrop().into(holder.img_categorias);
+        Glide.with(contexto).load(Util.URL + (s.equals("null") ? Util.IMAGE_DEFAULT_CATEGORIAS : s)).centerCrop().into(holder.img_categorias);
+
+
     }
 
     @Override
@@ -99,26 +103,26 @@ public class Adaptador_Categorias extends RecyclerView.Adapter<Adaptador_Categor
         public void onClick(View v) {
             escuchaCategorias.onClick(this,obtenerIdCategoria(getAdapterPosition()));
             // preguntamos por la bandera de control , saber si esta mostrando el menu editar y eliminar o no
-            if (!flag_control){                                                       // si la bandera es false  ( NO se ha presionado boton)
-                Animation desplaza = AnimationUtils.loadAnimation(itemView.getContext(),R.anim.deslizar); // identificamos la animacion desplzar a la  derecha
-                flag_control = true;                                                // invertimos bandera, se presiono
-                txt_nombreCategoria.setText(items.getString(ConsultaCategorias.NOMBRE));  // no se por que tengo que hacer esto para que funcione la animacion. jajajajaja  luego averiguo //// TODO: 28/10/2016
-                desplaza.setFillAfter(true);                                       //accion para que la animacion no se restablezca
-                cardView_categorias.setAnimation(desplaza);                            //iniciamos animacion  ir a la derecha cardview
-                linearLayout_button_categorias.setVisibility(View.VISIBLE);     // colocamo visibles los botones editar y eliminar
-                linearLayout_button_categorias.setClickable(true);            //  activamos que puedas darle click
-
-
-            }
-            else {                                                          //  si la bandera esta true,  boton esta presionado
-                Animation desplaza_back = AnimationUtils.loadAnimation(itemView.getContext(),R.anim.deslizar_back);  // identificamos animacion ir a la izquierda
-                Animation alpha_back = AnimationUtils.loadAnimation(itemView.getContext(),R.anim.alpha_back);  // identificamos animacion desaparcer
-                linearLayout_button_categorias.setClickable(false);                           //  desabilitamos que se pueda dar click
-                linearLayout_button_categorias.setAnimation(alpha_back);                      // iniciamos animacion desaparecer de botones editar y eliminar
-                flag_control= false;                                                    //  colcoamos control en false ,
-                cardView_categorias.setAnimation(desplaza_back);                                   //iniciamos animacion para ir atras del cardview
-                linearLayout_button_categorias.setVisibility(View.INVISIBLE);                 // colocamos invisible  los botones editar y eliminar
-            }
+//            if (!flag_control){                                                       // si la bandera es false  ( NO se ha presionado boton)
+//                Animation desplaza = AnimationUtils.loadAnimation(itemView.getContext(),R.anim.deslizar); // identificamos la animacion desplzar a la  derecha
+//                flag_control = true;                                                // invertimos bandera, se presiono
+//                txt_nombreCategoria.setText(items.getString(ConsultaCategorias.NOMBRE));  // no se por que tengo que hacer esto para que funcione la animacion. jajajajaja  luego averiguo //// TODO: 28/10/2016
+//                desplaza.setFillAfter(true);                                       //accion para que la animacion no se restablezca
+//                cardView_categorias.setAnimation(desplaza);                            //iniciamos animacion  ir a la derecha cardview
+//                linearLayout_button_categorias.setVisibility(View.VISIBLE);     // colocamo visibles los botones editar y eliminar
+//                linearLayout_button_categorias.setClickable(true);            //  activamos que puedas darle click
+//
+//
+//            }
+//            else {                                                          //  si la bandera esta true,  boton esta presionado
+//                Animation desplaza_back = AnimationUtils.loadAnimation(itemView.getContext(),R.anim.deslizar_back);  // identificamos animacion ir a la izquierda
+//                Animation alpha_back = AnimationUtils.loadAnimation(itemView.getContext(),R.anim.alpha_back);  // identificamos animacion desaparcer
+//                linearLayout_button_categorias.setClickable(false);                           //  desabilitamos que se pueda dar click
+//                linearLayout_button_categorias.setAnimation(alpha_back);                      // iniciamos animacion desaparecer de botones editar y eliminar
+//                flag_control= false;                                                    //  colcoamos control en false ,
+//                cardView_categorias.setAnimation(desplaza_back);                                   //iniciamos animacion para ir atras del cardview
+//                linearLayout_button_categorias.setVisibility(View.INVISIBLE);                 // colocamos invisible  los botones editar y eliminar
+//            }
         }
     }
 

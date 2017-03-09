@@ -92,10 +92,10 @@
         </activity>
         <activity
             android:name=".Sub_menus.Sub_menu_almacenes"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".Loggin">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"></meta-data>
+                android:value=".Loggin"></meta-data>
         </activity>
         <activity android:name=".Sub_menus.Sub_menu_categorias" />
         <activity

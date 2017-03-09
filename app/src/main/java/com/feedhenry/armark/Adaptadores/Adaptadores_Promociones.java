@@ -5,15 +5,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -62,7 +57,7 @@ public class Adaptadores_Promociones extends RecyclerView.Adapter<Adaptadores_Pr
         s = items.getString(ConsultaPromociones.DESCUENTO);
         holder.txt_descuentoPromo.setText(s + " %");
         s = items.getString(ConsultaPromociones.IMAGEN);
-        String urlImage = Util.URL + (s.equals("null") ? Util.IMAGE_DEFAULT : s);
+        String urlImage = Util.URL + (s.equals("null") ? Util.IMAGE_DEFAULT_PROMO : s);
         Glide.with(contexto).load(urlImage).centerCrop().into(holder.img_promociones);
 //
     }

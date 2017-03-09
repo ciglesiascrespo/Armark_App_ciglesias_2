@@ -9,9 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -135,7 +132,7 @@ public class Detalle_promociones_fragment extends Fragment implements LoaderMana
             if (!imagen.equals("null")) {
                 Glide.with(getActivity()).load(Util.URL + imagen).centerCrop().into(img_sub_promocion);
             }else{
-                Glide.with(getActivity()).load(Util.URL + Util.IMAGE_DEFAULT).centerCrop().into(img_sub_promocion);
+                Glide.with(getActivity()).load(Util.URL + Util.IMAGE_DEFAULT_PROMO).centerCrop().into(img_sub_promocion);
             }
 
 
