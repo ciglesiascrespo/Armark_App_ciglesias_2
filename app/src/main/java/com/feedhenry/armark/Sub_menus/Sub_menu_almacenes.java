@@ -118,7 +118,7 @@ public class Sub_menu_almacenes extends AppCompatActivity {
             switch (position) {
                 case 0:
 
-                    return Detalles_almacenes_fragment.newInstance(position + 1, idalmacen);
+                    return Detalles_almacenes_fragment.newInstance(position + 1, idwebAlmacenes);
 
                 case 1:
 
@@ -126,8 +126,7 @@ public class Sub_menu_almacenes extends AppCompatActivity {
 
                 case 2:
 
-                    return Detalles_almacenes_fragment.newInstance(position + 1, idalmacen);
-
+                    return Detalles_almacenes_fragment.newInstance(position + 1, idwebAlmacenes);
 
                 default:
                     return null;

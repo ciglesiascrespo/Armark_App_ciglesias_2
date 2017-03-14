@@ -7,4 +7,5 @@
     <color name="colorAccentLigth">#c8ff4081</color>
     <color name="colorLoginContainer">#baffffff</color>
     <color name="background">#fafafa</color>
+    <color name="negro_semitransparente">#B2000000</color>
 </resources>

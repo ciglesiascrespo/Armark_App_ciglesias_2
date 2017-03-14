@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.feedhenry.armark.R;
 import com.feedhenry.armark.fragmentos.Detalle_promociones_fragment;
@@ -36,7 +37,7 @@ public class Sub_menu_promociones extends AppCompatActivity {
         varControl = getIntent().getStringExtra("varcontrol");
         idpromociones = getIntent().getStringExtra("idpromociones");
         idalmacen = getIntent().getStringExtra("idalmacen");
-
+        Log.e("sub_menu promociones", "idAlmacen: " + idalmacen);
         //  adaptador para los fragmentos
         SeccionPageradapter seccionPageradapter1 = new SeccionPageradapter(getSupportFragmentManager(),
                 Sub_menu_promociones.this);
