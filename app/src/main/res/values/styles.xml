@@ -33,4 +33,5 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@drawable/background_label_fab</item>
     </style>
+
 </resources>

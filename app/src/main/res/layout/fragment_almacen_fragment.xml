@@ -32,7 +32,7 @@
             fab:fab_colorNormal="?attr/colorAccent"
             fab:fab_icon="@drawable/ic_camara"
             fab:fab_size="mini"
-            fab:fab_title="Ar" />
+            fab:fab_title="@string/btn_flotante_ar" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/accion_buscar"
@@ -41,7 +41,7 @@
             fab:fab_colorNormal="?attr/colorAccent"
             fab:fab_icon="@drawable/ic_action_name"
             fab:fab_size="mini"
-            fab:fab_title="Buscar" />
+            fab:fab_title="@string/btn_flotante_ir" />
 
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>

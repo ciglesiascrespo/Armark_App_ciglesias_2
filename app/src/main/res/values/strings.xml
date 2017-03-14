@@ -87,7 +87,8 @@
     <string name="error_apellidos_registrar">Digite su(s) Apellido(s)</string>
     <string name="error_telefono_registrar">Digite su número de celular</string>
 
-
+    <string name="btn_flotante_ir">Como Llegar</string>
+    <string name="btn_flotante_ar">Buscar Almacenes</string>
 
     <!-- String de AR -->
     <string name="finder_searching">Buscar</string>
