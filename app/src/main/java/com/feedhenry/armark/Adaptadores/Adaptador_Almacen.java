@@ -41,7 +41,7 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
 
 
     @Override
-    public Adaptador_Almacen.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_almacen, parent, false);
         return new ViewHolder(view);
@@ -49,7 +49,7 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
     }
 
     @Override
-    public void onBindViewHolder(Adaptador_Almacen.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         items.moveToPosition(position);
         String s;
 
@@ -61,7 +61,7 @@ public class Adaptador_Almacen extends RecyclerView.Adapter<Adaptador_Almacen.Vi
         holder.viewDescripcion.setText(s);
 
         s = items.getString(ConsultaAlmacen.LOGO);
-        Log.e("Almacenes", "Imagen: " + s);
+//        Log.e("Almacenes", "Imagen: " + s);
         Glide.with(contexto).load(Util.URL + (s.equals("null") ? Util.IMAGE_DEFAULT_ALMACEN : s)).centerCrop().into(holder.viewLogo);
     }
 

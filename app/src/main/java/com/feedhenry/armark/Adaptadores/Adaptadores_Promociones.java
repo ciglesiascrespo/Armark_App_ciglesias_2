@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,13 +37,13 @@ public class Adaptadores_Promociones extends RecyclerView.Adapter<Adaptadores_Pr
     }
 
     @Override
-    public Adaptadores_Promociones.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_promociones_dos, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(Adaptadores_Promociones.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
 
         items.moveToPosition(position);
         String s;
@@ -59,6 +60,9 @@ public class Adaptadores_Promociones extends RecyclerView.Adapter<Adaptadores_Pr
         s = items.getString(ConsultaPromociones.IMAGEN);
         String urlImage = Util.URL + (s.equals("null") ? Util.IMAGE_DEFAULT_PROMO : s);
         Glide.with(contexto).load(urlImage).centerCrop().into(holder.img_promociones);
+        Log.e("Adaptador promociones",
+                "idCategrias: " + items.getString(ConsultaPromociones.IDCATEGORIA) + " , idAlmacen: "
+                        + items.getString(ConsultaPromociones.IDALMACEN) + " , nombre: " + items.getString(ConsultaPromociones.NOMBRE));
 //
     }
 

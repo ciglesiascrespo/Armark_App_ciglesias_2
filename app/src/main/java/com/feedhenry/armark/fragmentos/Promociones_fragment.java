@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.feedhenry.armark.Adaptadores.Adaptadores_Promociones;
 import com.feedhenry.armark.R;
@@ -37,6 +38,7 @@ public class Promociones_fragment extends Fragment implements Adaptadores_Promoc
     private LinearLayoutManager linearLayoutManager;
     private Adaptadores_Promociones adaptadorPromociones;
     private String idwebalmacenes, varcontrol; //
+    private TextView txtNoPromociones;
 
     private static final int LOADER_PROMOCIONES = 1;
 
@@ -88,6 +90,7 @@ public class Promociones_fragment extends Fragment implements Adaptadores_Promoc
         adaptadorPromociones.notifyDataSetChanged();
         listaUI.setAdapter(adaptadorPromociones);
         Log.e("error", "promociones");
+        txtNoPromociones = (TextView) getActivity().findViewById(R.id.id_txt_no_promociones);
 
         getActivity().getSupportLoaderManager().initLoader(LOADER_PROMOCIONES, null, this);
 
@@ -113,6 +116,11 @@ public class Promociones_fragment extends Fragment implements Adaptadores_Promoc
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data.getCount() > 0) {
+            txtNoPromociones.setVisibility(View.GONE);
+        } else {
+            txtNoPromociones.setVisibility(View.VISIBLE);
+        }
         if (adaptadorPromociones != null) {
             adaptadorPromociones.swapCursor(data);
         }

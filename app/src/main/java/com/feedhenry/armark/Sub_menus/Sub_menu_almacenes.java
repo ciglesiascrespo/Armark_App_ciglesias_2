@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import com.feedhenry.armark.ArAlmacenActivity;
 import com.feedhenry.armark.IrAlmacenActivity;
 import com.feedhenry.armark.R;
+import com.feedhenry.armark.fragmentos.Categorias_fragment;
 import com.feedhenry.armark.fragmentos.Detalles_almacenes_fragment;
 import com.feedhenry.armark.fragmentos.Promociones_fragment;
 
@@ -131,7 +132,7 @@ public class Sub_menu_almacenes extends AppCompatActivity {
 
                 case 2:
 
-                    return Detalles_almacenes_fragment.newInstance(position + 1, idwebAlmacenes);
+                    return Categorias_fragment.newInstance(position + 1, idwebAlmacenes);
 
                 default:
                     return null;

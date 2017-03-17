@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".fragmentos.Categorias_fragment">
 
+    <TextView
+        android:id="@+id/id_txt_no_categorias"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="No existen categorias"
+        android:textSize="22sp" />
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -14,10 +14,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.feedhenry.armark.Adaptadores.Adaptador_Categorias;
 import com.feedhenry.armark.R;
 
+import org.w3c.dom.Text;
+
+import modelo.BaseDatos;
 import modelo.Contrato;
 
 /**
@@ -26,6 +30,8 @@ import modelo.Contrato;
 public class Categorias_fragment extends Fragment implements Adaptador_Categorias.OnItemClickListener,
         LoaderManager.LoaderCallbacks<Cursor> {
     public static final String PRODUCTOS = "ARG_PAGE";
+    public static final String ID_WEB_ALMACENES = "ARG_IDWEBALMACEB";
+    private String idWebAlmacenes;
     private int mPage;
 
     private RecyclerView listaUI;
@@ -34,23 +40,36 @@ public class Categorias_fragment extends Fragment implements Adaptador_Categoria
     private String idCategoria; //  para recibir el identificadr del torneo
 
     private static final int LOADER_CATEGORIA = 3;
-
+    private TextView txtNoCategorias;
 
     public static Categorias_fragment newInstance(int page) {
         // Required empty public constructor
         Categorias_fragment productos_fragment = new Categorias_fragment();
         Bundle args = new Bundle();
-        args.putInt(PRODUCTOS,page);
+        args.putInt(PRODUCTOS, page);
         productos_fragment.setArguments(args);
         return productos_fragment;
     }
+
+    public static Categorias_fragment newInstance(int page, String idAlmacen) {
+        // Required empty public constructor
+        Categorias_fragment productos_fragment = new Categorias_fragment();
+        Bundle args = new Bundle();
+        args.putInt(PRODUCTOS, page);
+        args.putString(ID_WEB_ALMACENES, idAlmacen);
+        productos_fragment.setArguments(args);
+        return productos_fragment;
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(PRODUCTOS);
-        Log.d("oncreate","resta");
-        //idTorneo = (String) getArguments().get(idTorneoFrag);//  pasamos el bundel a string
+        idWebAlmacenes = getArguments().getString(ID_WEB_ALMACENES) == null ? "" : getArguments().getString(ID_WEB_ALMACENES);
 
+        Log.e("Categorias", "idWebAlmacen: " + idWebAlmacenes);
+        //idTorneo = (String) getArguments().get(idTorneoFrag);//  pasamos el bundel a string
 
     }
 
@@ -67,20 +86,20 @@ public class Categorias_fragment extends Fragment implements Adaptador_Categoria
         super.onActivityCreated(savedInstanceState);
 
 
-        listaUI = (RecyclerView)getActivity().findViewById(R.id.my_Recycler_View_Categorias);
+        listaUI = (RecyclerView) getActivity().findViewById(R.id.my_Recycler_View_Categorias);
         listaUI.setHasFixedSize(true);
-
+        txtNoCategorias = (TextView) getActivity().findViewById(R.id.id_txt_no_categorias);
         linearLayoutManager = new LinearLayoutManager(getContext());
         listaUI.setLayoutManager(linearLayoutManager);
 
-        adaptadorCategorias = new Adaptador_Categorias(getContext(),this);
+        adaptadorCategorias = new Adaptador_Categorias(getContext(), this);
         adaptadorCategorias.notifyDataSetChanged();
         listaUI.setAdapter(adaptadorCategorias);
-        Log.e("error","categorias");
+
         //getActivity().getSupportLoaderManager().restartLoader(1, null, this);
 
 
-        getActivity().getSupportLoaderManager().initLoader(LOADER_CATEGORIA,null,this);
+        getActivity().getSupportLoaderManager().initLoader(LOADER_CATEGORIA, null, this);
 
        /* Inicio_feedHenry_sdk iniciar = new Inicio_feedHenry_sdk(getContext());
         iniciar.InicializarFH(getContext(),informacion);*/
@@ -114,13 +133,39 @@ public class Categorias_fragment extends Fragment implements Adaptador_Categoria
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(getContext(), Contrato.Armark_categorias.URI_CONTENIDO,null,null,null,null);
+        CursorLoader c = null;
+        try {
+            if (idWebAlmacenes.isEmpty()) {
+                c = new CursorLoader(getContext(), Contrato.Armark_categorias.URI_CONTENIDO, null, null, null, null);
+            } else {
+
+                String selection = Contrato.Armark_categorias.IDCATEGORIAS + " IN( SELECT " + Contrato.Armark_promociones.IDCATEGORIA +
+                        " FROM " + BaseDatos.Tabla.PROMOCIONES + " WHERE " + Contrato.Armark_promociones.IDALMACEN + " = " + idWebAlmacenes + ")";
+                Log.e("Categorias", "sql: " + selection);
+
+                c = new CursorLoader(getContext(), Contrato.Armark_categorias.URI_CONTENIDO, null, selection, null, null);
+            }
+        } catch (Exception e) {
+            Log.e("Categorias", "Error cursor loader: " + e.getMessage());
+
+        }
+
+        return c;
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data.getCount() > 0) {
+            txtNoCategorias.setVisibility(View.GONE);
+        } else {
+            txtNoCategorias.setVisibility(View.VISIBLE);
+        }
         if (adaptadorCategorias != null) {
-            adaptadorCategorias.swapCursor(data);
+            try {
+                adaptadorCategorias.swapCursor(data);
+            } catch (Exception e) {
+                Log.e("Categorias", "Error load finished: " + e.getMessage());
+            }
         }
     }
 

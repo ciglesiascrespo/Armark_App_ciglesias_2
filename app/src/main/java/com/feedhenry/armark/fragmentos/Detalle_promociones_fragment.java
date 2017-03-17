@@ -129,10 +129,12 @@ public class Detalle_promociones_fragment extends Fragment implements LoaderMana
             txt_fechaFinal.setText(fechaFinal);
             txt_descuento.setText("Aprovecha, " + descuento + "% de descuento");
             txt_referencia_promo.setText(referencia);
-            if (!imagen.equals("null")) {
-                Glide.with(getActivity()).load(Util.URL + imagen).centerCrop().into(img_sub_promocion);
-            }else{
-                Glide.with(getActivity()).load(Util.URL + Util.IMAGE_DEFAULT_PROMO).centerCrop().into(img_sub_promocion);
+            if (imagen != null) {
+                if (!imagen.equals("null")) {
+                    Glide.with(getActivity()).load(Util.URL + imagen).centerCrop().into(img_sub_promocion);
+                } else {
+                    Glide.with(getActivity()).load(Util.URL + Util.IMAGE_DEFAULT_PROMO).centerCrop().into(img_sub_promocion);
+                }
             }
 
 
