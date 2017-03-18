@@ -110,6 +110,10 @@ public class Promociones_fragment extends Fragment implements Adaptadores_Promoc
             String SelPromocion = Contrato.Armark_promociones.IDALMACEN + "=?";
             String[] arg = new String[]{idwebalmacenes};
             return new CursorLoader(getContext(), Contrato.Armark_promociones.URI_CONTENIDO, null, SelPromocion, arg, null);
+        }else if(varcontrol != null && varcontrol.equals("CATEGORIA")){
+            String SelPromocion = Contrato.Armark_promociones.IDCATEGORIA + "=?";
+            String[] arg = new String[]{idwebalmacenes};
+            return new CursorLoader(getContext(), Contrato.Armark_promociones.URI_CONTENIDO, null, SelPromocion, arg, null);
         }
         return new CursorLoader(getContext(), Contrato.Armark_promociones.URI_CONTENIDO, null, null, null, null);
     }

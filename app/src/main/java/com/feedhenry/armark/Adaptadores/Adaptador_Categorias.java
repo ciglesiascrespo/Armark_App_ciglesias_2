@@ -1,6 +1,7 @@
 package com.feedhenry.armark.Adaptadores;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.feedhenry.armark.PromocionesActivity;
 import com.feedhenry.armark.R;
 import com.feedhenry.armark.Util;
 
@@ -39,7 +41,7 @@ public class Adaptador_Categorias extends RecyclerView.Adapter<Adaptador_Categor
 
     @Override
     public Adaptador_Categorias.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_categorias,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lista_categorias, parent, false);
         return new ViewHolder(view);
     }
 
@@ -50,10 +52,10 @@ public class Adaptador_Categorias extends RecyclerView.Adapter<Adaptador_Categor
         String s;
 
         // asignacion de ui
-        s= items.getString(ConsultaCategorias.NOMBRE);
+        s = items.getString(ConsultaCategorias.NOMBRE);
         holder.txt_nombreCategoria.setText(s);
 
-        s= items.getString(ConsultaCategorias.IMAGEN);
+        s = items.getString(ConsultaCategorias.IMAGEN);
         Glide.with(contexto).load(Util.URL + (s.equals("null") ? Util.IMAGE_DEFAULT_CATEGORIAS : s)).centerCrop().into(holder.img_categorias);
 
 
@@ -73,6 +75,7 @@ public class Adaptador_Categorias extends RecyclerView.Adapter<Adaptador_Categor
             notifyDataSetChanged();
         }
     }
+
     public Cursor getCursor() {
         return items;
     }
@@ -83,25 +86,32 @@ public class Adaptador_Categorias extends RecyclerView.Adapter<Adaptador_Categor
         private TextView txt_nombreCategoria;
         public LinearLayout linearLayout_button_categorias;
         public Boolean flag_control = false;
-        public Button btnAlmacenesCategorias,btnPromocionesCategorias;
+        public Button btnAlmacenesCategorias, btnPromocionesCategorias;
         public CardView cardView_categorias;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            img_categorias = (ImageView)itemView.findViewById(R.id.img_categorias);
-            txt_nombreCategoria = (TextView)itemView.findViewById(R.id.txt_nombre_categoria);
+            img_categorias = (ImageView) itemView.findViewById(R.id.img_categorias);
+            txt_nombreCategoria = (TextView) itemView.findViewById(R.id.txt_nombre_categoria);
 
-            btnAlmacenesCategorias = (Button)itemView.findViewById(R.id.btnalmacencategorias);
-            btnPromocionesCategorias = (Button)itemView.findViewById(R.id.btnpromocionescategorias);
-            cardView_categorias = (CardView)itemView.findViewById(R.id.cardview_Categorias);
-            linearLayout_button_categorias = (LinearLayout)itemView.findViewById(R.id.layout_button_categorias);
+            btnAlmacenesCategorias = (Button) itemView.findViewById(R.id.btnalmacencategorias);
+            btnPromocionesCategorias = (Button) itemView.findViewById(R.id.btnpromocionescategorias);
+            cardView_categorias = (CardView) itemView.findViewById(R.id.cardview_Categorias);
+            linearLayout_button_categorias = (LinearLayout) itemView.findViewById(R.id.layout_button_categorias);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            escuchaCategorias.onClick(this,obtenerIdCategoria(getAdapterPosition()));
+            escuchaCategorias.onClick(this, obtenerIdCategoria(getAdapterPosition()));
+
+            Intent i = new Intent(contexto, PromocionesActivity.class);
+            i.putExtra("idCategoria", items.getString(ConsultaCategorias.IDCATEGORIA));
+            i.putExtra("nombreCategoria",items.getString(ConsultaCategorias.NOMBRE));
+            contexto.startActivity(i);
+
+
             // preguntamos por la bandera de control , saber si esta mostrando el menu editar y eliminar o no
 //            if (!flag_control){                                                       // si la bandera es false  ( NO se ha presionado boton)
 //                Animation desplaza = AnimationUtils.loadAnimation(itemView.getContext(),R.anim.deslizar); // identificamos la animacion desplzar a la  derecha
@@ -133,7 +143,7 @@ public class Adaptador_Categorias extends RecyclerView.Adapter<Adaptador_Categor
         holder.linearLayout_button_categorias.setVisibility(View.INVISIBLE);
         holder.linearLayout_button_categorias.setClickable(false);
         holder.cardView_categorias.clearAnimation();
-        holder.flag_control= false;
+        holder.flag_control = false;
     }
 
     private String obtenerIdCategoria(int adapterPosition) {
@@ -155,7 +165,7 @@ public class Adaptador_Categorias extends RecyclerView.Adapter<Adaptador_Categor
         int IMAGEN = 4;
         int REGISTRO = 5;
         int MODIFICACION = 6;
-        int VISIBLE= 7;
+        int VISIBLE = 7;
         int ACTIVO = 8;
 
     }

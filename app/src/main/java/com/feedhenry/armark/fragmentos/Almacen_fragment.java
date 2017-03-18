@@ -2,9 +2,11 @@ package com.feedhenry.armark.fragmentos;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -17,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.feedhenry.armark.Adaptadores.Adaptador_Almacen;
+import com.feedhenry.armark.ArAlmacenActivity;
+import com.feedhenry.armark.IrAlmacenActivity;
 import com.feedhenry.armark.R;
 
 import modelo.Contrato;
@@ -26,7 +30,7 @@ import modelo.Contrato;
  * A simple {@link Fragment} subclass.
  */
 public class Almacen_fragment extends Fragment implements Adaptador_Almacen.OnItemClickListener,
-        LoaderManager.LoaderCallbacks<Cursor>{
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String ALMACEN = "ARG_PAGE";
     public static final String IDALMACEN = "ARG_PAGE";//  recibimos eL ID DEL ALMACEN , SI LO HAY
@@ -35,19 +39,21 @@ public class Almacen_fragment extends Fragment implements Adaptador_Almacen.OnIt
     private RecyclerView listaUI;
     private LinearLayoutManager linearLayoutManager;
     private Adaptador_Almacen adaptadorAlmacen;
-    private String idalmacen,varControl; // capturar datos de los bundel
+    private String idalmacen, varControl; // capturar datos de los bundel
 
     private static final int LOADER_ALMACEN = 2;
 
     Context context;
 
+    com.getbase.floatingactionbutton.FloatingActionButton fabAr, fabMap;
+
     public static Almacen_fragment newInstance(int page) {
         // Required empty public constructor
         Almacen_fragment almacen_fragment = new Almacen_fragment();
         Bundle args = new Bundle();
-        args.putInt(ALMACEN,page);
-       // args.putString(IDALMACEN,idalmacen);
-       // args.putString(VARCONTROL,varControl);
+        args.putInt(ALMACEN, page);
+        // args.putString(IDALMACEN,idalmacen);
+        // args.putString(VARCONTROL,varControl);
         almacen_fragment.setArguments(args);
 
         return almacen_fragment;
@@ -58,8 +64,8 @@ public class Almacen_fragment extends Fragment implements Adaptador_Almacen.OnIt
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ALMACEN);
-       // idalmacen = getArguments().getString(IDALMACEN);
-       // varControl = getArguments().getString(VARCONTROL);
+        // idalmacen = getArguments().getString(IDALMACEN);
+        // varControl = getArguments().getString(VARCONTROL);
 
     }
 
@@ -78,20 +84,40 @@ public class Almacen_fragment extends Fragment implements Adaptador_Almacen.OnIt
         super.onActivityCreated(savedInstanceState);
 
 
-        listaUI = (RecyclerView)getActivity().findViewById(R.id.my_Recycler_View_Almacenes);
+        listaUI = (RecyclerView) getActivity().findViewById(R.id.my_Recycler_View_Almacenes);
         listaUI.setHasFixedSize(true);
 
         linearLayoutManager = new LinearLayoutManager(getContext());
         listaUI.setLayoutManager(linearLayoutManager);
 
-        adaptadorAlmacen = new Adaptador_Almacen(getContext(),this);
+        adaptadorAlmacen = new Adaptador_Almacen(getContext(), this);
         adaptadorAlmacen.notifyDataSetChanged();
         listaUI.setAdapter(adaptadorAlmacen);
-        Log.e("error","almacen");
+
+        fabAr = (com.getbase.floatingactionbutton.FloatingActionButton)getActivity().findViewById(R.id.accion_ar);
+        fabMap = (com.getbase.floatingactionbutton.FloatingActionButton)getActivity().findViewById(R.id.accion_map);
+
+        fabMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickMap();
+            }
+        });
+
+
+        fabAr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickAr();
+            }
+        });
+
+
+        Log.e("error", "almacen");
         //getActivity().getSupportLoaderManager().restartLoader(1, null, this);
 
 
-        getActivity().getSupportLoaderManager().initLoader(LOADER_ALMACEN,null,this);
+        getActivity().getSupportLoaderManager().initLoader(LOADER_ALMACEN, null, this);
 
        /* Inicio_feedHenry_sdk iniciar = new Inicio_feedHenry_sdk(getContext());
         iniciar.InicializarFH(getContext(),informacion);*/
@@ -104,7 +130,22 @@ public class Almacen_fragment extends Fragment implements Adaptador_Almacen.OnIt
 
     }
 
-  @Override
+    public void onClickMap() {
+        Intent intentMap = new Intent(getContext(), IrAlmacenActivity.class);
+        startActivity(intentMap);
+    }
+
+    public void onClickAr() {
+        Intent intentAr = new Intent(getContext(), ArAlmacenActivity.class);
+        startActivity(intentAr);
+    }
+
+
+                /* Intent intentAr = new Intent(getApplicationContext(), ArAlmacenActivity.class);
+                getApplicationContext().startActivity(intentAr);*/
+
+
+    @Override
     public void onPause() {
         super.onPause();
         getActivity().getSupportLoaderManager().destroyLoader(LOADER_ALMACEN);
@@ -126,7 +167,7 @@ public class Almacen_fragment extends Fragment implements Adaptador_Almacen.OnIt
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
-        return new CursorLoader(getContext(), Contrato.Armark_almacen.URI_CONTENIDO,null,null,null,null);
+        return new CursorLoader(getContext(), Contrato.Armark_almacen.URI_CONTENIDO, null, null, null, null);
 
     }
 

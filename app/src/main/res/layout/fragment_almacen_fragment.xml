@@ -26,7 +26,7 @@
         fab:fab_labelsPosition="left">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/accion_favorito"
+            android:id="@+id/accion_ar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="?attr/colorAccent"
@@ -35,12 +35,13 @@
             fab:fab_title="@string/btn_flotante_ar" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/accion_buscar"
+            android:id="@+id/accion_map"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="?attr/colorAccent"
             fab:fab_icon="@drawable/ic_action_name"
             fab:fab_size="mini"
+
             fab:fab_title="@string/btn_flotante_ir" />
 
 
