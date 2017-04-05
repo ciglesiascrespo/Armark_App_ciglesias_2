@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import com.feedhenry.armark.ArAlmacenActivity;
 import com.feedhenry.armark.IrAlmacenActivity;
 import com.feedhenry.armark.R;
+import com.feedhenry.armark.ar.ArActivity;
 import com.feedhenry.armark.fragmentos.Categorias_fragment;
 import com.feedhenry.armark.fragmentos.Detalles_almacenes_fragment;
 import com.feedhenry.armark.fragmentos.Promociones_fragment;
@@ -76,7 +77,7 @@ public class Sub_menu_almacenes extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.id_menu_ar:
-                Intent intentAr = new Intent(this, ArAlmacenActivity.class);
+                Intent intentAr = new Intent(this, ArActivity.class);
                 startActivity(intentAr);
                 /* Intent intentAr = new Intent(getApplicationContext(), ArAlmacenActivity.class);
                 getApplicationContext().startActivity(intentAr);*/

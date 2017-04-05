@@ -111,7 +111,8 @@
         <activity
             android:name=".ArAlmacenActivity"
             android:configChanges="screenSize|orientation" />
-        <activity android:name=".PromocionesActivity"></activity>
+        <activity android:name=".PromocionesActivity" />
+        <activity android:name=".ar.ArActivity"></activity>
     </application>
 
 </manifest>

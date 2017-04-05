@@ -56,7 +56,7 @@ public class ArAlmacenActivity extends AppCompatActivity implements ArchitectVie
         av = (ArchitectView) this.findViewById(R.id.architectView);
 
         final ArchitectStartupConfiguration config = new ArchitectStartupConfiguration();
-        config.setLicenseKey(Constantes.WIKITUDE_SDK_KEY);
+        config.setLicenseKey(Constantes.KEY_APP);
 
         config.setFeatures(this.getFeatures());
         config.setCameraResolution(this.getCameraResolution());
@@ -64,8 +64,8 @@ public class ArAlmacenActivity extends AppCompatActivity implements ArchitectVie
 
         this.av.setCameraLifecycleListener(getCameraLifecycleListener());
         try {
-			/* first mandatory life-cycle notification */
-            this.av.onCreate( config );
+            /* first mandatory life-cycle notification */
+            this.av.onCreate(config);
         } catch (RuntimeException rex) {
             this.av = null;
             Toast.makeText(getApplicationContext(), "can't create Architect View", Toast.LENGTH_SHORT).show();
@@ -87,11 +87,11 @@ public class ArAlmacenActivity extends AppCompatActivity implements ArchitectVie
     private int getFeatures() {
         int features = (hasGeo ? ArchitectStartupConfiguration.Features.Geo : 0) |
                 (hasIR ? ArchitectStartupConfiguration.Features.ImageTracking : 0) |
-                (hasInstant ? ArchitectStartupConfiguration.Features.InstantTracking : 0) ;
+                (hasInstant ? ArchitectStartupConfiguration.Features.InstantTracking : 0);
         return features;
     }
 
-    protected CameraSettings.CameraResolution getCameraResolution(){
+    protected CameraSettings.CameraResolution getCameraResolution() {
         return CameraSettings.CameraResolution.SD_640x480;
     }
 
@@ -107,15 +107,15 @@ public class ArAlmacenActivity extends AppCompatActivity implements ArchitectVie
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        if ( this.av != null ) {
+        if (this.av != null) {
             this.av.onPostCreate();
             try {
-
-                this.av.load( "file:///android_asset/Radar/index.html" );
+                Log.e("ArAlmacenActivity", "PostCreate");
+                this.av.load("file:///android_asset/Radar/index.html");
 
                 if (this.getInitialCullingDistanceMeters() != ArchitectViewHolderInterface.CULLING_DISTANCE_DEFAULT_METERS) {
 
-                    this.av.setCullingDistance( this.getInitialCullingDistanceMeters() );
+                    this.av.setCullingDistance(this.getInitialCullingDistanceMeters());
                 }
 
             } catch (IOException e) {
@@ -147,17 +147,17 @@ public class ArAlmacenActivity extends AppCompatActivity implements ArchitectVie
     protected void onResume() {
         super.onResume();
 
-        if ( this.av != null ) {
+        if (this.av != null) {
             this.av.onResume();
 
             // register accuracy listener in architectView, if set
-            if (this.sensorAccuracyListener!=null) {
-                this.av.registerSensorAccuracyChangeListener( this.sensorAccuracyListener );
+            if (this.sensorAccuracyListener != null) {
+                this.av.registerSensorAccuracyChangeListener(this.sensorAccuracyListener);
             }
         }
 
         // tell locationProvider to resume, usually location is then (again) fetched, so the GPS indicator appears in status bar
-        if ( this.av != null ) {
+        if (this.av != null) {
             this.av.onResume();
         }
     }
@@ -172,7 +172,7 @@ public class ArAlmacenActivity extends AppCompatActivity implements ArchitectVie
         super.onDestroy();
 
         // call mandatory live-cycle method of architectView
-        if ( this.av != null ) {
+        if (this.av != null) {
             this.av.clearCache();
             this.av.onDestroy();
         }
@@ -182,7 +182,7 @@ public class ArAlmacenActivity extends AppCompatActivity implements ArchitectVie
     public void onLowMemory() {
         super.onLowMemory();
 
-        if ( this.av != null ) {
+        if (this.av != null) {
             this.av.onLowMemory();
         }
 
@@ -193,17 +193,17 @@ public class ArAlmacenActivity extends AppCompatActivity implements ArchitectVie
         super.onPause();
 
         // call mandatory live-cycle method of architectView
-        if ( this.av != null ) {
+        if (this.av != null) {
             this.av.onPause();
 
             // unregister accuracy listener in architectView, if set
-            if ( this.sensorAccuracyListener != null ) {
-                this.av.unregisterSensorAccuracyChangeListener( this.sensorAccuracyListener );
+            if (this.sensorAccuracyListener != null) {
+                this.av.unregisterSensorAccuracyChangeListener(this.sensorAccuracyListener);
             }
         }
 
         // tell locationProvider to pause, usually location is then no longer fetched, so the GPS indicator disappears in status bar
-        if ( this.locationProvider != null ) {
+        if (this.locationProvider != null) {
             this.locationProvider.onPause();
         }
     }
@@ -231,9 +231,9 @@ public class ArAlmacenActivity extends AppCompatActivity implements ArchitectVie
             Exactitud = loc.getAccuracy();
             Altura = loc.getAltitude();
 
-            try{
+            try {
                 av.setLocation(Latitud, Longitud, Altura, Exactitud);
-            }catch (Exception e){
+            } catch (Exception e) {
                 Log.e(LOGTAG, e.getMessage());
             }
 
@@ -252,7 +252,6 @@ public class ArAlmacenActivity extends AppCompatActivity implements ArchitectVie
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
-
 
 
     @Override
