@@ -1,6 +1,7 @@
 // information about server communication. This sample webservice is provided by Wikitude and returns random dummy places near given location
+//https://dbsystem-qttfmlfhsqu3kljn2ghmm4va-dev.mbaas1.tom.redhatmobile.com/puntos/
 var ServerInformation = {
-	POIDATA_SERVER: "https://dbsystem-qttfmlfhsqu3kljn2ghmm4va-dev.mbaas1.tom.redhatmobile.com/puntos/",
+	POIDATA_SERVER: "https://dbsystem-aoijwyzr2id353uxd7rbuwbx-dev.mbaas1.tom.redhatmobile.com/almacenes/",
 	POIDATA_SERVER_ARG_LAT: "lat",
 	POIDATA_SERVER_ARG_LON: "lon",
 	POIDATA_SERVER_ARG_NR_POIS: "nrPois"
