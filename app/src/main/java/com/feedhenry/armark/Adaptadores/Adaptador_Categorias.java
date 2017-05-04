@@ -107,7 +107,7 @@ public class Adaptador_Categorias extends RecyclerView.Adapter<Adaptador_Categor
             escuchaCategorias.onClick(this, obtenerIdCategoria(getAdapterPosition()));
 
             Intent i = new Intent(contexto, PromocionesActivity.class);
-            i.putExtra("idCategoria", items.getString(ConsultaCategorias.IDCATEGORIA));
+            i.putExtra("idCategoria", items.getString(ConsultaCategorias.IDWEB));
             i.putExtra("nombreCategoria",items.getString(ConsultaCategorias.NOMBRE));
             contexto.startActivity(i);
 

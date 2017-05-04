@@ -139,7 +139,7 @@ public class Categorias_fragment extends Fragment implements Adaptador_Categoria
                 c = new CursorLoader(getContext(), Contrato.Armark_categorias.URI_CONTENIDO, null, null, null, null);
             } else {
 
-                String selection = Contrato.Armark_categorias.IDCATEGORIAS + " IN( SELECT " + Contrato.Armark_promociones.IDCATEGORIA +
+                String selection = Contrato.Armark_categorias.IDWEB + " IN( SELECT " + Contrato.Armark_promociones.IDCATEGORIA +
                         " FROM " + BaseDatos.Tabla.PROMOCIONES + " WHERE " + Contrato.Armark_promociones.IDALMACEN + " = " + idWebAlmacenes + ")";
                 Log.e("Categorias", "sql: " + selection);
 
