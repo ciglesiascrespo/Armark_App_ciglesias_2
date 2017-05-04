@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -19,9 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.feedhenry.armark.Adaptadores.Adaptador_Almacen;
-import com.feedhenry.armark.ArAlmacenActivity;
 import com.feedhenry.armark.IrAlmacenActivity;
 import com.feedhenry.armark.R;
+import com.feedhenry.armark.ar.ArActivity;
 
 import modelo.Contrato;
 
@@ -136,7 +135,7 @@ public class Almacen_fragment extends Fragment implements Adaptador_Almacen.OnIt
     }
 
     public void onClickAr() {
-        Intent intentAr = new Intent(getContext(), ArAlmacenActivity.class);
+        Intent intentAr = new Intent(getContext(), ArActivity.class);
         startActivity(intentAr);
     }
 

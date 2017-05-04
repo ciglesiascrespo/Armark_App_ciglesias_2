@@ -1,5 +1,7 @@
 // information about server communication. This sample webservice is provided by Wikitude and returns random dummy places near given location
 //https://dbsystem-qttfmlfhsqu3kljn2ghmm4va-dev.mbaas1.tom.redhatmobile.com/puntos/
+//https://dbsystem-aoijwyzr2id353uxd7rbuwbx-dev.mbaas1.tom.redhatmobile.com/almacenes/
+//http://armark.com.co/webapi/api/general
 var ServerInformation = {
 	POIDATA_SERVER: "https://dbsystem-aoijwyzr2id353uxd7rbuwbx-dev.mbaas1.tom.redhatmobile.com/almacenes/",
 	POIDATA_SERVER_ARG_LAT: "lat",
@@ -62,7 +64,7 @@ var World = {
 		// updates distance information of all placemarks
 		World.updateDistanceToUserValues();
 
-		World.updateStatusMessage(currentPlaceNr + ' places loaded');
+		World.updateStatusMessage(currentPlaceNr + ' almacenes cargados');
 	},
 
 	// sets/updates distances of all makers so they are available way faster than calling (time-consuming) distanceToUser() method all the time
@@ -152,7 +154,7 @@ var World = {
 
 		// set helper var to avoid requesting places while loading
 		World.isRequestingData = true;
-		World.updateStatusMessage('Requesting places from web-service');
+		World.updateStatusMessage('Solicitando almacenes');
 
 		// server-url to JSON content provider
 		var serverUrl = ServerInformation.POIDATA_SERVER + "?" + ServerInformation.POIDATA_SERVER_ARG_LAT + "=" + lat + "&" + ServerInformation.POIDATA_SERVER_ARG_LON + "=" + lon + "&" + ServerInformation.POIDATA_SERVER_ARG_NR_POIS + "=20";
@@ -161,7 +163,7 @@ var World = {
 			World.loadPoisFromJsonData(data);
 		})
 			.error(function(err) {
-				World.updateStatusMessage("Invalid web-service response.", true);
+				World.updateStatusMessage("Upss! algo estuvo mal, intentalo mas tarde.", true);
 				World.isRequestingData = false;
 			})
 			.complete(function() {
